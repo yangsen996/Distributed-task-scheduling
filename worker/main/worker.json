@@ -1,0 +1,13 @@
+{
+  "etcd的集群列表":"配置多个，避免点单故障",
+  "etcdEndpoints":["127.0.0.1:2379"],
+
+  "etcd的连接超时时间":"单位毫秒",
+  "etcdDialTimeout":5000,
+
+  "mongodb地址":"采用Mongodb URI",
+  "mongodbUri":"mongodb://127.0.0.1:27017",
+
+  "mongodb链接超时时间":"单位毫秒",
+  "mongodbConnectTimeout":5000
+}

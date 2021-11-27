@@ -1,0 +1,62 @@
+//package master
+//
+//import (
+//	"crontab/common"
+//	"encoding/json"
+//	"net"
+//	"net/http"
+//	"strconv"
+//	"time"
+//)
+//
+//type ApiServer struct {
+//	httpServer *http.Server
+//}
+//
+//var G_apiServer *ApiServer
+//
+//// post job={"name":"job1","command":"echo hello","cronexpr":"* * * * * *"}
+//func handleJobSave(res http.ResponseWriter, req *http.Request) {
+//	//解析表单
+//	if err := req.ParseForm(); err != nil {
+//		return
+//	}
+//	//获取值
+//	postreq := req.PostForm.Get("job")
+//	//反序列化
+//	var job common.Job
+//	if err := json.Unmarshal([]byte(postreq), &job); err != nil {
+//		return
+//	}
+//	//保存到etcd中
+//	_, err := G_jobMgr.SaveJob(&job)
+//	if err != nil {
+//		return
+//	}
+//	// return res.Write([]byte(common.BuileResponse(0, "success", oldJob)))
+//}
+//
+//func InitApiServer() (err error) {
+//	var (
+//		mux *http.ServeMux
+//	)
+//	//路由
+//	mux = http.NewServeMux()
+//	mux.HandleFunc("/job/save", handleJobSave)
+//
+//	//端口
+//	lister, err := net.Listen("tcp", ":"+strconv.Itoa(G_config.ApiPort))
+//	if err != nil {
+//		return err
+//	}
+//	httpServer := &http.Server{
+//		ReadTimeout:  time.Duration(G_config.ApiReadTimeout) * time.Millisecond,
+//		WriteTimeout: time.Duration(G_config.ApiWriteTimeout) * time.Millisecond,
+//		Handler:      mux,
+//	}
+//	G_apiServer = &ApiServer{
+//		httpServer: httpServer,
+//	}
+//	go httpServer.Serve(lister)
+//	return
+//}
